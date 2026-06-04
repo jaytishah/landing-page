@@ -7730,20 +7730,22 @@ h1, h2, h3, h4, h5, h6 {
 .background-robot-entity {
     position: absolute;
     top: 50%;
-    right: 0%;
-    transform: translateY(-50%);
-    width: 720px;
-    height: 720px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 110%;
+    max-width: 1200px;
     pointer-events: none;
     z-index: 2;
-    opacity: 0.12; /* Subtle, sophisticated backdrop blending */
+    opacity: 0.18;
     mix-blend-mode: screen;
-    animation: floatRobot 8s ease-in-out infinite alternate;
+    animation: floatRobot 10s ease-in-out infinite alternate;
 }
 
 @keyframes floatRobot {
-    0% { transform: translateY(-48%) rotate(-1deg); }
-    100% { transform: translateY(-52%) rotate(1deg); }
+    0% { transform: translate(-50%, -49%) rotate(-0.5deg) scale(1); }
+    50% { transform: translate(-50%, -51%) rotate(0deg) scale(1.01); }
+    100% { transform: translate(-50%, -49.5%) rotate(0.5deg) scale(1); }
 }
 
 .bg-robot-svg {
@@ -7752,7 +7754,7 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
-/* Robot facial element anims */
+/* === ROBOT EYES === */
 .robot-eye-left, .robot-eye-right {
     animation: robotEyePulse 3.5s ease-in-out infinite alternate;
 }
@@ -7767,14 +7769,23 @@ h1, h2, h3, h4, h5, h6 {
         stroke: rgba(0, 240, 255, 0.35);
     }
     100% {
-        opacity: 0.95;
-        fill: rgba(0, 240, 255, 0.25);
-        stroke: rgba(0, 240, 255, 0.95);
-        filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.75));
+        opacity: 1;
+        fill: rgba(0, 240, 255, 0.3);
+        stroke: rgba(0, 240, 255, 1);
+        filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.8));
     }
 }
 
-/* Equalizer soundwave speech grid */
+/* === VISOR BAND GLOW === */
+.visor-band {
+    animation: visorGlow 4s ease-in-out infinite alternate;
+}
+@keyframes visorGlow {
+    0% { fill: rgba(0,240,255,0.03); stroke-opacity: 0.4; }
+    100% { fill: rgba(0,240,255,0.1); stroke-opacity: 1; filter: drop-shadow(0 0 8px rgba(0,240,255,0.4)); }
+}
+
+/* === SPEECH WAVE === */
 .speech-wave line {
     transform-origin: center;
     animation: robotSpeech 1.6s ease-in-out infinite alternate;
@@ -7786,14 +7797,13 @@ h1, h2, h3, h4, h5, h6 {
 .speech-wave line:nth-child(5) { animation-duration: 1.0s; animation-delay: 0.3s; }
 .speech-wave line:nth-child(6) { animation-duration: 1.5s; animation-delay: 0.1s; }
 .speech-wave line:nth-child(7) { animation-duration: 0.9s; animation-delay: 0.6s; }
-.speech-wave line:nth-child(8) { animation-duration: 1.2s; animation-delay: 0.2s; }
 
 @keyframes robotSpeech {
     0% { transform: scaleY(0.25); }
-    100% { transform: scaleY(1.4); }
+    100% { transform: scaleY(1.5); }
 }
 
-/* Neural Cortex Node pulsing */
+/* === NEURAL NODES === */
 .neural-node {
     animation: robotNodePulse 2.2s ease-in-out infinite alternate;
 }
@@ -7801,51 +7811,231 @@ h1, h2, h3, h4, h5, h6 {
 .node-2 { animation-delay: 0.5s; }
 .node-3 { animation-delay: 1.1s; }
 .node-4 { animation-delay: 1.6s; }
+.node-5 { animation-delay: 0.8s; }
 
 @keyframes robotNodePulse {
-    0% {
-        transform: scale(0.75);
-        opacity: 0.2;
-    }
-    100% {
-        transform: scale(1.4);
-        opacity: 1;
-        filter: drop-shadow(0 0 6px var(--lime));
-    }
+    0% { transform: scale(0.7); opacity: 0.2; }
+    100% { transform: scale(1.5); opacity: 1; filter: drop-shadow(0 0 8px currentColor); }
 }
 
-/* Responsiveness for background robot */
+/* === REACTOR CORE ANIMATIONS === */
+.core-glow {
+    animation: coreBreath 3s ease-in-out infinite;
+}
+@keyframes coreBreath {
+    0%, 100% { opacity: 0.4; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+.core-ring-outer {
+    animation: coreRingSpin 12s linear infinite;
+    transform-origin: 500px 570px;
+}
+@keyframes coreRingSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.core-ring-inner {
+    animation: coreRingSpinReverse 8s linear infinite;
+    transform-origin: 500px 570px;
+}
+@keyframes coreRingSpinReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+.core-center {
+    animation: corePulse 2s ease-in-out infinite;
+}
+@keyframes corePulse {
+    0%, 100% { opacity: 0.3; r: 8; }
+    50% { opacity: 1; r: 12; }
+}
+
+.core-beam {
+    animation: coreBeamFlash 1.5s ease-in-out infinite alternate;
+}
+.core-beam:nth-child(5) { animation-delay: 0.2s; }
+.core-beam:nth-child(6) { animation-delay: 0.4s; }
+.core-beam:nth-child(7) { animation-delay: 0.6s; }
+.core-beam:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes coreBeamFlash {
+    0% { opacity: 0.2; stroke-width: 0.5; }
+    100% { opacity: 1; stroke-width: 2; }
+}
+
+/* === ORBIT RINGS === */
+.orbit-ring-1 {
+    animation: orbitSpin1 25s linear infinite;
+    transform-origin: 500px 550px;
+}
+@keyframes orbitSpin1 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.orbit-ring-2 {
+    animation: orbitSpin2 20s linear infinite reverse;
+    transform-origin: 500px 550px;
+}
+@keyframes orbitSpin2 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.orbit-ring-3 {
+    animation: orbitSpin3 30s linear infinite;
+    transform-origin: 500px 550px;
+}
+@keyframes orbitSpin3 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* === ORBIT NODES === */
+.orbit-node {
+    animation: orbitNodePulse 2.5s ease-in-out infinite alternate;
+}
+.orbit-node-1 { animation-delay: 0s; }
+.orbit-node-2 { animation-delay: 0.8s; }
+.orbit-node-3 { animation-delay: 1.6s; }
+
+@keyframes orbitNodePulse {
+    0% { opacity: 0.3; r: 2; }
+    100% { opacity: 1; r: 5; filter: drop-shadow(0 0 6px currentColor); }
+}
+
+/* === ENERGY PARTICLES === */
+.energy-p {
+    animation: particleFloat 6s ease-in-out infinite alternate;
+}
+.p-1 { animation-delay: 0s; animation-duration: 5s; }
+.p-2 { animation-delay: 0.7s; animation-duration: 7s; }
+.p-3 { animation-delay: 1.2s; animation-duration: 4.5s; }
+.p-4 { animation-delay: 0.4s; animation-duration: 6.5s; }
+.p-5 { animation-delay: 1.8s; animation-duration: 5.5s; }
+.p-6 { animation-delay: 0.2s; animation-duration: 8s; }
+.p-7 { animation-delay: 1.0s; animation-duration: 6s; }
+.p-8 { animation-delay: 0.5s; animation-duration: 7.5s; }
+.p-9 { animation-delay: 1.5s; animation-duration: 5s; }
+.p-10 { animation-delay: 0.9s; animation-duration: 6s; }
+
+@keyframes particleFloat {
+    0% { opacity: 0.1; transform: translateY(0) scale(0.5); }
+    50% { opacity: 0.9; }
+    100% { opacity: 0.2; transform: translateY(-30px) scale(1.5); }
+}
+
+/* === SCANNING BEAM === */
+.scan-line {
+    animation: scanSweep 6s ease-in-out infinite;
+}
+@keyframes scanSweep {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(1400px); opacity: 0; }
+}
+
+/* === SPINE NODES === */
+.spine-node {
+    animation: spineNodeCascade 3s ease-in-out infinite;
+}
+.spine-node-1 { animation-delay: 0s; }
+.spine-node-2 { animation-delay: 0.4s; }
+.spine-node-3 { animation-delay: 0.8s; }
+.spine-node-4 { animation-delay: 1.2s; }
+
+@keyframes spineNodeCascade {
+    0%, 100% { opacity: 0.15; r: 2; }
+    50% { opacity: 0.8; r: 5; filter: drop-shadow(0 0 5px #bf5eff); }
+}
+
+/* === DATA STREAMS === */
+.stream-path {
+    stroke-dashoffset: 0;
+    animation: dataStreamFlow 3s linear infinite;
+}
+@keyframes dataStreamFlow {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -30; }
+}
+
+/* === ANTENNA === */
+.antenna-tip {
+    animation: antennaBeacon 2s ease-in-out infinite;
+}
+.antenna-core {
+    animation: antennaPulse 1.5s ease-in-out infinite;
+}
+@keyframes antennaBeacon {
+    0%, 100% { r: 4; opacity: 0.3; }
+    50% { r: 7; opacity: 1; filter: drop-shadow(0 0 10px #00f0ff); }
+}
+@keyframes antennaPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* === HELMET OUTLINE === */
+.helmet-outline {
+    stroke-dasharray: 10 5;
+    stroke-dashoffset: 0;
+    animation: helmetTrace 15s linear infinite;
+}
+@keyframes helmetTrace {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -150; }
+}
+
+/* === CHEST PLATE === */
+.chest-plate {
+    stroke-dasharray: 12 6;
+    stroke-dashoffset: 0;
+    animation: chestTrace 20s linear infinite;
+}
+@keyframes chestTrace {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -180; }
+}
+
+/* === HEX GRID FIELD === */
+.hex-grid-field {
+    animation: hexFieldPulse 8s ease-in-out infinite alternate;
+}
+@keyframes hexFieldPulse {
+    0% { opacity: 0.04; }
+    100% { opacity: 0.12; }
+}
+
+/* === RESPONSIVENESS === */
 @media (max-width: 1400px) {
     .background-robot-entity {
-        width: 600px;
-        height: 600px;
-        right: -5%;
+        max-width: 1000px;
+        opacity: 0.15;
     }
 }
 
 @media (max-width: 1200px) {
     .background-robot-entity {
-        width: 500px;
-        height: 500px;
-        right: -8%;
-        opacity: 0.08;
+        max-width: 800px;
+        opacity: 0.12;
     }
 }
 
 @media (max-width: 991px) {
     .background-robot-entity {
-        top: 60%;
-        left: 50%;
-        transform: translate(-50%, -50%) !important;
-        width: 450px;
-        height: 450px;
-        opacity: 0.06;
-        animation: floatRobotMobile 8s ease-in-out infinite alternate;
+        top: 55%;
+        max-width: 700px;
+        opacity: 0.08;
+        animation: floatRobotMobile 10s ease-in-out infinite alternate;
     }
     
     @keyframes floatRobotMobile {
-        0% { transform: translate(-50%, -48%) rotate(-1deg); }
-        100% { transform: translate(-50%, -52%) rotate(1deg); }
+        0% { transform: translate(-50%, -48%) rotate(-0.5deg); }
+        100% { transform: translate(-50%, -52%) rotate(0.5deg); }
     }
 }
 

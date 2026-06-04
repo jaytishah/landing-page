@@ -186,67 +186,246 @@
 
         <!-- Big Animated Background Robot Entity -->
         <div class="background-robot-entity">
-            <svg class="bg-robot-svg" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Glowing Effects -->
+            <svg class="bg-robot-svg" viewBox="0 0 1000 1400" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <linearGradient id="robotGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="var(--lime)" stop-opacity="0.25"/>
-                        <stop offset="50%" stop-color="#00f0ff" stop-opacity="0.15"/>
-                        <stop offset="100%" stop-color="#bf5eff" stop-opacity="0.05"/>
+                        <stop offset="0%" stop-color="#aed534" stop-opacity="0.4"/>
+                        <stop offset="50%" stop-color="#00f0ff" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#bf5eff" stop-opacity="0.15"/>
                     </linearGradient>
-                    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="12" result="blur" />
-                        <feMerge>
-                            <feMergeNode in="blur" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
+                    <linearGradient id="coreGlow" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#aed534" stop-opacity="0.3"/>
+                    </linearGradient>
+                    <radialGradient id="reactorCore" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.5"/>
+                        <stop offset="60%" stop-color="#aed534" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+                    </radialGradient>
+                    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="8" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="heavyGlow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="18" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                     </filter>
                 </defs>
 
-                <!-- Robot Head Outline / Wireframe -->
-                <path d="M 250,150 L 550,150 L 620,300 L 580,550 L 400,680 L 220,550 L 180,300 Z" stroke="url(#robotGlow)" stroke-width="1.5" stroke-dasharray="8,8" />
-                
-                <!-- Outer Tech Ring -->
-                <circle cx="400" cy="400" r="320" stroke="rgba(0, 240, 255, 0.08)" stroke-width="1" stroke-dasharray="15,5" />
-                
-                <!-- Internal Circuits / Facial Elements -->
-                <polygon points="350,180 450,180 470,220 330,220" stroke="rgba(174, 213, 52, 0.2)" stroke-width="1.5" fill="none" />
-                <line x1="400" y1="220" x2="400" y2="300" stroke="rgba(174, 213, 52, 0.25)" stroke-width="1.5" stroke-dasharray="4,4" />
-
-                <!-- Eyes (Pulsing glowing circles or polygons) -->
-                <g filter="url(#neonGlow)">
-                    <polygon points="260,330 350,330 330,370 280,370" fill="rgba(0, 240, 255, 0.15)" stroke="#00f0ff" stroke-width="2" class="robot-eye-left" />
-                    <polygon points="540,330 450,330 470,370 520,370" fill="rgba(0, 240, 255, 0.15)" stroke="#00f0ff" stroke-width="2" class="robot-eye-right" />
+                <!-- === HEXAGONAL GRID FIELD === -->
+                <g class="hex-grid-field" opacity="0.08">
+                    <path d="M200,100 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
+                    <path d="M265,137 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
+                    <path d="M330,100 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
+                    <path d="M700,100 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
+                    <path d="M765,137 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
+                    <path d="M830,100 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
+                    <path d="M150,250 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#aed534" stroke-width="0.6"/>
+                    <path d="M850,250 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#aed534" stroke-width="0.6"/>
+                    <path d="M100,400 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#bf5eff" stroke-width="0.6"/>
+                    <path d="M900,400 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#bf5eff" stroke-width="0.6"/>
                 </g>
 
-                <!-- Eye Connections -->
-                <line x1="350" y1="330" x2="450" y2="330" stroke="rgba(0, 240, 255, 0.2)" stroke-width="1" />
-
-                <!-- Face Plate Lines / Geometric Detailing -->
-                <path d="M 220,300 L 320,300 L 300,450 L 400,490 L 500,450 L 480,300 L 580,300" stroke="url(#robotGlow)" stroke-width="1" />
-                <path d="M 300,450 L 220,550 M 500,450 L 580,550" stroke="url(#robotGlow)" stroke-width="1" stroke-dasharray="3,3" />
-
-                <!-- Mouth / Speech Waveform Grid -->
-                <g class="speech-wave" stroke="var(--lime)" stroke-width="2" stroke-linecap="round">
-                    <line x1="330" y1="560" x2="330" y2="580" />
-                    <line x1="350" y1="550" x2="350" y2="590" />
-                    <line x1="370" y1="540" x2="370" y2="600" />
-                    <line x1="390" y1="530" x2="390" y2="610" />
-                    <line x1="410" y1="530" x2="410" y2="610" />
-                    <line x1="430" y1="540" x2="430" y2="600" />
-                    <line x1="450" y1="550" x2="450" y2="590" />
-                    <line x1="470" y1="560" x2="470" y2="580" />
+                <!-- === ORBITING DATA RINGS === -->
+                <g class="orbit-ring orbit-ring-1">
+                    <ellipse cx="500" cy="550" rx="420" ry="120" stroke="rgba(0,240,255,0.12)" stroke-width="1" stroke-dasharray="12,8" fill="none"/>
+                </g>
+                <g class="orbit-ring orbit-ring-2">
+                    <ellipse cx="500" cy="550" rx="380" ry="100" stroke="rgba(174,213,52,0.1)" stroke-width="0.8" stroke-dasharray="8,12" fill="none"/>
+                </g>
+                <g class="orbit-ring orbit-ring-3">
+                    <ellipse cx="500" cy="550" rx="460" ry="140" stroke="rgba(191,94,255,0.08)" stroke-width="0.6" stroke-dasharray="20,10" fill="none"/>
                 </g>
 
-                <!-- Brain Cortex Circuits / Neural Nodes -->
-                <g class="neural-circuits" stroke="rgba(191, 94, 255, 0.25)" stroke-width="1.5">
-                    <path d="M 350,180 C 310,130 250,180 250,220 C 250,260 300,280 330,220" fill="none" />
-                    <path d="M 450,180 C 490,130 550,180 550,220 C 550,260 500,280 470,220" fill="none" />
+                <!-- Orbiting data nodes -->
+                <circle cx="920" cy="550" r="4" fill="#00f0ff" filter="url(#neonGlow)" class="orbit-node orbit-node-1"/>
+                <circle cx="80" cy="550" r="3" fill="#aed534" filter="url(#neonGlow)" class="orbit-node orbit-node-2"/>
+                <circle cx="500" cy="410" r="3.5" fill="#bf5eff" filter="url(#neonGlow)" class="orbit-node orbit-node-3"/>
+
+                <!-- === ROBOT HEAD === -->
+                <g class="robot-head-group">
+                    <!-- Helmet outer shell -->
+                    <path d="M 380,180 Q 380,120 500,100 Q 620,120 620,180 L 640,260 Q 640,310 600,340 L 560,360 L 440,360 L 400,340 Q 360,310 360,260 Z" 
+                          stroke="url(#robotGlow)" stroke-width="2" fill="none" class="helmet-outline"/>
                     
-                    <circle cx="280" cy="180" r="3" fill="#bf5eff" filter="url(#neonGlow)" class="neural-node node-1" />
-                    <circle cx="310" cy="150" r="3.5" fill="var(--lime)" filter="url(#neonGlow)" class="neural-node node-2" />
-                    <circle cx="490" cy="150" r="3.5" fill="var(--lime)" filter="url(#neonGlow)" class="neural-node node-3" />
-                    <circle cx="520" cy="180" r="3" fill="#bf5eff" filter="url(#neonGlow)" class="neural-node node-4" />
+                    <!-- Antenna -->
+                    <line x1="500" y1="100" x2="500" y2="60" stroke="#00f0ff" stroke-width="1.5" class="antenna-line"/>
+                    <circle cx="500" cy="55" r="5" fill="none" stroke="#00f0ff" stroke-width="1.5" filter="url(#neonGlow)" class="antenna-tip"/>
+                    <circle cx="500" cy="55" r="2" fill="#00f0ff" class="antenna-core"/>
+
+                    <!-- Visor / Eye Band -->
+                    <path d="M 395,240 L 605,240 L 595,290 L 405,290 Z" fill="rgba(0,240,255,0.06)" stroke="#00f0ff" stroke-width="1.5" class="visor-band"/>
+                    
+                    <!-- Eyes -->
+                    <g filter="url(#neonGlow)">
+                        <polygon points="420,252 470,252 465,280 425,280" fill="rgba(0,240,255,0.2)" stroke="#00f0ff" stroke-width="2" class="robot-eye-left"/>
+                        <polygon points="530,252 580,252 575,280 535,280" fill="rgba(0,240,255,0.2)" stroke="#00f0ff" stroke-width="2" class="robot-eye-right"/>
+                    </g>
+                    <!-- Eye bridge -->
+                    <line x1="470" y1="266" x2="530" y2="266" stroke="rgba(0,240,255,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+                    
+                    <!-- Chin / Jaw -->
+                    <path d="M 440,360 L 460,400 L 500,415 L 540,400 L 560,360" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    
+                    <!-- Mouth waveform -->
+                    <g class="speech-wave" stroke="#aed534" stroke-width="1.5" stroke-linecap="round">
+                        <line x1="460" y1="385" x2="460" y2="395"/>
+                        <line x1="472" y1="380" x2="472" y2="400"/>
+                        <line x1="484" y1="375" x2="484" y2="405"/>
+                        <line x1="496" y1="372" x2="496" y2="408"/>
+                        <line x1="508" y1="375" x2="508" y2="405"/>
+                        <line x1="520" y1="380" x2="520" y2="400"/>
+                        <line x1="532" y1="385" x2="532" y2="395"/>
+                    </g>
+                </g>
+
+                <!-- === NECK === -->
+                <rect x="470" y="415" width="60" height="40" rx="8" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
+                <line x1="480" y1="425" x2="520" y2="425" stroke="rgba(174,213,52,0.2)" stroke-width="0.8"/>
+                <line x1="480" y1="435" x2="520" y2="435" stroke="rgba(174,213,52,0.2)" stroke-width="0.8"/>
+                <line x1="480" y1="445" x2="520" y2="445" stroke="rgba(174,213,52,0.2)" stroke-width="0.8"/>
+
+                <!-- === TORSO / CHEST === -->
+                <g class="robot-torso-group">
+                    <!-- Chest plate -->
+                    <path d="M 370,460 L 420,455 L 500,450 L 580,455 L 630,460 L 650,560 L 630,700 L 600,720 L 500,740 L 400,720 L 370,700 L 350,560 Z" 
+                          stroke="url(#robotGlow)" stroke-width="1.8" fill="none" class="chest-plate"/>
+                    
+                    <!-- Chest panel lines -->
+                    <path d="M 400,480 L 500,470 L 600,480" stroke="rgba(0,240,255,0.15)" stroke-width="0.8" fill="none"/>
+                    <path d="M 390,520 L 500,510 L 610,520" stroke="rgba(0,240,255,0.1)" stroke-width="0.8" fill="none"/>
+                    
+                    <!-- REACTOR CORE (Central Chest) -->
+                    <g class="reactor-core" filter="url(#heavyGlow)">
+                        <circle cx="500" cy="570" r="45" fill="url(#reactorCore)" class="core-glow"/>
+                        <circle cx="500" cy="570" r="35" stroke="#00f0ff" stroke-width="1.5" fill="none" class="core-ring-outer"/>
+                        <circle cx="500" cy="570" r="22" stroke="#aed534" stroke-width="1" fill="none" stroke-dasharray="6,4" class="core-ring-inner"/>
+                        <circle cx="500" cy="570" r="10" fill="rgba(0,240,255,0.4)" class="core-center"/>
+                        <!-- Core energy lines -->
+                        <line x1="500" y1="525" x2="500" y2="540" stroke="#00f0ff" stroke-width="1" class="core-beam"/>
+                        <line x1="500" y1="600" x2="500" y2="615" stroke="#00f0ff" stroke-width="1" class="core-beam"/>
+                        <line x1="455" y1="570" x2="470" y2="570" stroke="#00f0ff" stroke-width="1" class="core-beam"/>
+                        <line x1="530" y1="570" x2="545" y2="570" stroke="#00f0ff" stroke-width="1" class="core-beam"/>
+                    </g>
+                    
+                    <!-- Chest side vents -->
+                    <g stroke="rgba(174,213,52,0.2)" stroke-width="0.8">
+                        <line x1="375" y1="520" x2="395" y2="520"/>
+                        <line x1="378" y1="535" x2="398" y2="535"/>
+                        <line x1="381" y1="550" x2="401" y2="550"/>
+                        <line x1="605" y1="520" x2="625" y2="520"/>
+                        <line x1="602" y1="535" x2="622" y2="535"/>
+                        <line x1="599" y1="550" x2="619" y2="550"/>
+                    </g>
+                </g>
+
+                <!-- === CIRCUIT SPINE (Behind torso) === -->
+                <g class="circuit-spine" stroke="rgba(191,94,255,0.15)" stroke-width="1">
+                    <line x1="500" y1="455" x2="500" y2="740" stroke-dasharray="5,8"/>
+                    <circle cx="500" cy="490" r="3" fill="#bf5eff" opacity="0.4" class="spine-node spine-node-1"/>
+                    <circle cx="500" cy="550" r="3" fill="#bf5eff" opacity="0.4" class="spine-node spine-node-2"/>
+                    <circle cx="500" cy="630" r="3" fill="#bf5eff" opacity="0.4" class="spine-node spine-node-3"/>
+                    <circle cx="500" cy="700" r="3" fill="#bf5eff" opacity="0.4" class="spine-node spine-node-4"/>
+                </g>
+
+                <!-- === LEFT ARM === -->
+                <g class="robot-arm-left">
+                    <!-- Shoulder joint -->
+                    <circle cx="350" cy="470" r="18" stroke="rgba(0,240,255,0.2)" stroke-width="1.2" fill="none"/>
+                    <circle cx="350" cy="470" r="6" fill="rgba(0,240,255,0.15)"/>
+                    <!-- Upper arm -->
+                    <path d="M 340,488 L 300,590 L 320,600 L 355,495" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    <!-- Elbow joint -->
+                    <circle cx="310" cy="595" r="12" stroke="rgba(174,213,52,0.2)" stroke-width="1" fill="none"/>
+                    <!-- Forearm -->
+                    <path d="M 300,607 L 260,720 L 280,730 L 318,610" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    <!-- Hand / Fingers -->
+                    <g class="robot-hand-left">
+                        <path d="M 260,730 L 240,770 L 250,775" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
+                        <path d="M 265,732 L 250,780 L 260,783" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
+                        <path d="M 272,733 L 265,785 L 275,786" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
+                        <path d="M 258,728 L 235,755 L 240,760" stroke="rgba(174,213,52,0.15)" stroke-width="1" fill="none"/>
+                    </g>
+                    <!-- Arm circuit lines -->
+                    <line x1="330" y1="530" x2="345" y2="530" stroke="rgba(174,213,52,0.15)" stroke-width="0.6"/>
+                    <line x1="320" y1="560" x2="340" y2="555" stroke="rgba(174,213,52,0.15)" stroke-width="0.6"/>
+                </g>
+
+                <!-- === RIGHT ARM === -->
+                <g class="robot-arm-right">
+                    <circle cx="650" cy="470" r="18" stroke="rgba(0,240,255,0.2)" stroke-width="1.2" fill="none"/>
+                    <circle cx="650" cy="470" r="6" fill="rgba(0,240,255,0.15)"/>
+                    <path d="M 660,488 L 700,590 L 680,600 L 645,495" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    <circle cx="690" cy="595" r="12" stroke="rgba(174,213,52,0.2)" stroke-width="1" fill="none"/>
+                    <path d="M 700,607 L 740,720 L 720,730 L 682,610" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    <g class="robot-hand-right">
+                        <path d="M 740,730 L 760,770 L 750,775" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
+                        <path d="M 735,732 L 750,780 L 740,783" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
+                        <path d="M 728,733 L 735,785 L 725,786" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
+                        <path d="M 742,728 L 765,755 L 760,760" stroke="rgba(174,213,52,0.15)" stroke-width="1" fill="none"/>
+                    </g>
+                    <line x1="660" y1="530" x2="655" y2="530" stroke="rgba(174,213,52,0.15)" stroke-width="0.6"/>
+                    <line x1="675" y1="560" x2="660" y2="555" stroke="rgba(174,213,52,0.15)" stroke-width="0.6"/>
+                </g>
+
+                <!-- === WAIST / HIP SECTION === -->
+                <path d="M 400,720 L 420,760 L 500,770 L 580,760 L 600,720" stroke="url(#robotGlow)" stroke-width="1.2" fill="none"/>
+                <ellipse cx="500" cy="745" rx="80" ry="12" stroke="rgba(0,240,255,0.1)" stroke-width="0.8" fill="none"/>
+
+                <!-- === LEFT LEG === -->
+                <g class="robot-leg-left">
+                    <path d="M 440,770 L 420,900 L 410,920 L 430,925 L 445,905 L 460,775" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    <circle cx="430" cy="910" r="10" stroke="rgba(0,240,255,0.15)" stroke-width="0.8" fill="none"/>
+                    <path d="M 415,925 L 400,1060 L 390,1080 L 380,1100 L 440,1100 L 435,1080 L 430,1065 L 445,930" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    <!-- Foot -->
+                    <path d="M 370,1100 L 360,1110 L 355,1125 L 450,1125 L 445,1110 L 440,1100" stroke="rgba(0,240,255,0.15)" stroke-width="1" fill="none"/>
+                </g>
+
+                <!-- === RIGHT LEG === -->
+                <g class="robot-leg-right">
+                    <path d="M 560,770 L 580,900 L 590,920 L 570,925 L 555,905 L 540,775" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    <circle cx="570" cy="910" r="10" stroke="rgba(0,240,255,0.15)" stroke-width="0.8" fill="none"/>
+                    <path d="M 585,925 L 600,1060 L 610,1080 L 620,1100 L 560,1100 L 565,1080 L 570,1065 L 555,930" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    <path d="M 630,1100 L 640,1110 L 645,1125 L 550,1125 L 555,1110 L 560,1100" stroke="rgba(0,240,255,0.15)" stroke-width="1" fill="none"/>
+                </g>
+
+                <!-- === ENERGY PARTICLES FIELD === -->
+                <g class="energy-particles">
+                    <circle cx="200" cy="300" r="2" fill="#00f0ff" class="energy-p p-1"/>
+                    <circle cx="800" cy="350" r="1.5" fill="#aed534" class="energy-p p-2"/>
+                    <circle cx="150" cy="600" r="2" fill="#bf5eff" class="energy-p p-3"/>
+                    <circle cx="850" cy="650" r="1.5" fill="#00f0ff" class="energy-p p-4"/>
+                    <circle cx="300" cy="200" r="1" fill="#aed534" class="energy-p p-5"/>
+                    <circle cx="700" cy="200" r="1.5" fill="#bf5eff" class="energy-p p-6"/>
+                    <circle cx="180" cy="800" r="2" fill="#00f0ff" class="energy-p p-7"/>
+                    <circle cx="820" cy="850" r="1.5" fill="#aed534" class="energy-p p-8"/>
+                    <circle cx="250" cy="1000" r="1" fill="#bf5eff" class="energy-p p-9"/>
+                    <circle cx="750" cy="1050" r="2" fill="#00f0ff" class="energy-p p-10"/>
+                </g>
+
+                <!-- === SCANNING BEAM (Vertical sweep) === -->
+                <g class="scanning-beam">
+                    <line x1="300" y1="0" x2="700" y2="0" stroke="rgba(174,213,52,0.08)" stroke-width="2" class="scan-line"/>
+                </g>
+
+                <!-- === NEURAL BRAIN NETWORK (Inside head) === -->
+                <g class="neural-circuits" stroke="rgba(191,94,255,0.25)" stroke-width="1">
+                    <path d="M 430,150 C 410,130 440,110 470,130 C 490,145 480,165 460,160" fill="none"/>
+                    <path d="M 530,155 C 540,135 570,120 580,145 C 585,165 560,170 545,160" fill="none"/>
+                    <path d="M 460,160 Q 500,175 545,160" fill="none" stroke-dasharray="3,3"/>
+                    <circle cx="430" cy="150" r="3" fill="#bf5eff" filter="url(#neonGlow)" class="neural-node node-1"/>
+                    <circle cx="470" cy="130" r="2.5" fill="#aed534" filter="url(#neonGlow)" class="neural-node node-2"/>
+                    <circle cx="530" cy="135" r="2.5" fill="#aed534" filter="url(#neonGlow)" class="neural-node node-3"/>
+                    <circle cx="575" cy="148" r="3" fill="#bf5eff" filter="url(#neonGlow)" class="neural-node node-4"/>
+                    <circle cx="500" cy="175" r="3.5" fill="#00f0ff" filter="url(#neonGlow)" class="neural-node node-5"/>
+                </g>
+
+                <!-- === DATA STREAMS (Flowing from hands) === -->
+                <g class="data-stream-left" stroke="rgba(0,240,255,0.1)" stroke-width="0.8">
+                    <path d="M 245,775 C 200,800 160,780 120,820 C 80,860 60,900 40,950" fill="none" stroke-dasharray="4,6" class="stream-path"/>
+                </g>
+                <g class="data-stream-right" stroke="rgba(174,213,52,0.1)" stroke-width="0.8">
+                    <path d="M 755,775 C 800,800 840,780 880,820 C 920,860 940,900 960,950" fill="none" stroke-dasharray="4,6" class="stream-path"/>
                 </g>
             </svg>
         </div>
