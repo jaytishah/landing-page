@@ -184,248 +184,262 @@
         <!-- Topographical wave background overlay -->
         <div class="hero-wave-overlay"></div>
 
-        <!-- Big Animated Background Robot Entity -->
+        <!-- Big Animated Background Robot Entity (Side-Profile Humanoid) -->
         <div class="background-robot-entity">
-            <svg class="bg-robot-svg" viewBox="0 0 1000 1400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="bg-robot-svg" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <linearGradient id="robotGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#aed534" stop-opacity="0.4"/>
-                        <stop offset="50%" stop-color="#00f0ff" stop-opacity="0.3"/>
-                        <stop offset="100%" stop-color="#bf5eff" stop-opacity="0.15"/>
+                    <!-- Gradients -->
+                    <linearGradient id="bodyGrad" x1="30%" y1="0%" x2="70%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(200,210,230,0.35)"/>
+                        <stop offset="40%" stop-color="rgba(160,175,200,0.2)"/>
+                        <stop offset="100%" stop-color="rgba(100,120,160,0.08)"/>
                     </linearGradient>
-                    <linearGradient id="coreGlow" x1="50%" y1="0%" x2="50%" y2="100%">
-                        <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.6"/>
-                        <stop offset="100%" stop-color="#aed534" stop-opacity="0.3"/>
+                    <linearGradient id="limbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(180,195,220,0.25)"/>
+                        <stop offset="100%" stop-color="rgba(120,140,175,0.1)"/>
                     </linearGradient>
-                    <radialGradient id="reactorCore" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.5"/>
-                        <stop offset="60%" stop-color="#aed534" stop-opacity="0.2"/>
+                    <radialGradient id="brainGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#aed534" stop-opacity="0.6"/>
+                        <stop offset="40%" stop-color="#00f0ff" stop-opacity="0.25"/>
                         <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
                     </radialGradient>
-                    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
-                        <feGaussianBlur stdDeviation="8" result="blur"/>
-                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    <radialGradient id="chestCore" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.5"/>
+                        <stop offset="50%" stop-color="#aed534" stop-opacity="0.15"/>
+                        <stop offset="100%" stop-color="transparent"/>
+                    </radialGradient>
+                    <radialGradient id="sparkleGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#aed534" stop-opacity="0.9"/>
+                        <stop offset="100%" stop-color="#aed534" stop-opacity="0"/>
+                    </radialGradient>
+                    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+                        <feGaussianBlur stdDeviation="6" result="b"/>
+                        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
                     </filter>
-                    <filter id="heavyGlow" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur stdDeviation="18" result="blur"/>
-                        <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    <filter id="heavyGlow" x="-60%" y="-60%" width="220%" height="220%">
+                        <feGaussianBlur stdDeviation="15" result="b"/>
+                        <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
                     </filter>
+                    <filter id="sparkleBlur" x="-100%" y="-100%" width="300%" height="300%">
+                        <feGaussianBlur stdDeviation="3" result="b"/>
+                        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <!-- Clip for dome transparency -->
+                    <clipPath id="domeClip">
+                        <ellipse cx="390" cy="195" rx="105" ry="120"/>
+                    </clipPath>
                 </defs>
 
-                <!-- === HEXAGONAL GRID FIELD === -->
-                <g class="hex-grid-field" opacity="0.08">
-                    <path d="M200,100 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
-                    <path d="M265,137 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
-                    <path d="M330,100 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
-                    <path d="M700,100 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
-                    <path d="M765,137 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
-                    <path d="M830,100 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#00f0ff" stroke-width="0.6"/>
-                    <path d="M150,250 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#aed534" stroke-width="0.6"/>
-                    <path d="M850,250 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#aed534" stroke-width="0.6"/>
-                    <path d="M100,400 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#bf5eff" stroke-width="0.6"/>
-                    <path d="M900,400 l30,17 l0,35 l-30,17 l-30,-17 l0,-35Z" stroke="#bf5eff" stroke-width="0.6"/>
-                </g>
+                <!-- ======================================================
+                     ROBOT BODY — Sleek Side-Profile Humanoid (3/4 View)
+                     ====================================================== -->
 
-                <!-- === ORBITING DATA RINGS === -->
-                <g class="orbit-ring orbit-ring-1">
-                    <ellipse cx="500" cy="550" rx="420" ry="120" stroke="rgba(0,240,255,0.12)" stroke-width="1" stroke-dasharray="12,8" fill="none"/>
-                </g>
-                <g class="orbit-ring orbit-ring-2">
-                    <ellipse cx="500" cy="550" rx="380" ry="100" stroke="rgba(174,213,52,0.1)" stroke-width="0.8" stroke-dasharray="8,12" fill="none"/>
-                </g>
-                <g class="orbit-ring orbit-ring-3">
-                    <ellipse cx="500" cy="550" rx="460" ry="140" stroke="rgba(191,94,255,0.08)" stroke-width="0.6" stroke-dasharray="20,10" fill="none"/>
-                </g>
-
-                <!-- Orbiting data nodes -->
-                <circle cx="920" cy="550" r="4" fill="#00f0ff" filter="url(#neonGlow)" class="orbit-node orbit-node-1"/>
-                <circle cx="80" cy="550" r="3" fill="#aed534" filter="url(#neonGlow)" class="orbit-node orbit-node-2"/>
-                <circle cx="500" cy="410" r="3.5" fill="#bf5eff" filter="url(#neonGlow)" class="orbit-node orbit-node-3"/>
-
-                <!-- === ROBOT HEAD === -->
+                <!-- === HEAD: Transparent Dome with Exposed Brain === -->
                 <g class="robot-head-group">
-                    <!-- Helmet outer shell -->
-                    <path d="M 380,180 Q 380,120 500,100 Q 620,120 620,180 L 640,260 Q 640,310 600,340 L 560,360 L 440,360 L 400,340 Q 360,310 360,260 Z" 
-                          stroke="url(#robotGlow)" stroke-width="2" fill="none" class="helmet-outline"/>
-                    
-                    <!-- Antenna -->
-                    <line x1="500" y1="100" x2="500" y2="60" stroke="#00f0ff" stroke-width="1.5" class="antenna-line"/>
-                    <circle cx="500" cy="55" r="5" fill="none" stroke="#00f0ff" stroke-width="1.5" filter="url(#neonGlow)" class="antenna-tip"/>
-                    <circle cx="500" cy="55" r="2" fill="#00f0ff" class="antenna-core"/>
+                    <!-- Dome / Cranium (transparent shell) -->
+                    <ellipse cx="390" cy="195" rx="105" ry="120" 
+                             fill="rgba(180,210,240,0.04)" stroke="rgba(200,220,240,0.25)" stroke-width="1.8" class="dome-shell"/>
+                    <!-- Inner dome reflection arc -->
+                    <path d="M 310,145 Q 340,80 420,75 Q 480,80 490,130" stroke="rgba(255,255,255,0.08)" stroke-width="1.2" fill="none"/>
 
-                    <!-- Visor / Eye Band -->
-                    <path d="M 395,240 L 605,240 L 595,290 L 405,290 Z" fill="rgba(0,240,255,0.06)" stroke="#00f0ff" stroke-width="1.5" class="visor-band"/>
-                    
-                    <!-- Eyes -->
-                    <g filter="url(#neonGlow)">
-                        <polygon points="420,252 470,252 465,280 425,280" fill="rgba(0,240,255,0.2)" stroke="#00f0ff" stroke-width="2" class="robot-eye-left"/>
-                        <polygon points="530,252 580,252 575,280 535,280" fill="rgba(0,240,255,0.2)" stroke="#00f0ff" stroke-width="2" class="robot-eye-right"/>
+                    <!-- BRAIN MECHANISM (Inside Dome) -->
+                    <g class="brain-mechanism" clip-path="url(#domeClip)">
+                        <!-- Ambient brain glow -->
+                        <circle cx="390" cy="185" r="65" fill="url(#brainGlow)" class="brain-ambient"/>
+                        
+                        <!-- Concentric Circuit Rings (like gears/target rings) -->
+                        <circle cx="390" cy="185" r="55" stroke="#aed534" stroke-width="1.2" fill="none" stroke-dasharray="8,4" class="brain-ring brain-ring-1"/>
+                        <circle cx="390" cy="185" r="42" stroke="#00f0ff" stroke-width="1" fill="none" stroke-dasharray="6,6" class="brain-ring brain-ring-2"/>
+                        <circle cx="390" cy="185" r="28" stroke="#aed534" stroke-width="1.5" fill="none" stroke-dasharray="4,3" class="brain-ring brain-ring-3"/>
+                        <circle cx="390" cy="185" r="15" stroke="#00f0ff" stroke-width="1" fill="none" class="brain-ring brain-ring-4"/>
+                        <!-- Center core dot -->
+                        <circle cx="390" cy="185" r="5" fill="#aed534" filter="url(#softGlow)" class="brain-core"/>
+                        
+                        <!-- Circuit traces inside brain -->
+                        <g stroke="rgba(174,213,52,0.3)" stroke-width="0.8" fill="none">
+                            <path d="M 390,185 L 420,160 L 445,170"/>
+                            <path d="M 390,185 L 355,165 L 340,180"/>
+                            <path d="M 390,185 L 370,210 L 345,215"/>
+                            <path d="M 390,185 L 415,205 L 435,195"/>
+                        </g>
+                        <!-- Glowing circuit nodes -->
+                        <circle cx="445" cy="170" r="3" fill="#aed534" filter="url(#softGlow)" class="circuit-node cn-1"/>
+                        <circle cx="340" cy="180" r="2.5" fill="#00f0ff" filter="url(#softGlow)" class="circuit-node cn-2"/>
+                        <circle cx="345" cy="215" r="2.5" fill="#bf5eff" filter="url(#softGlow)" class="circuit-node cn-3"/>
+                        <circle cx="435" cy="195" r="3" fill="#aed534" filter="url(#softGlow)" class="circuit-node cn-4"/>
+                        <circle cx="370" cy="145" r="2" fill="#00f0ff" filter="url(#softGlow)" class="circuit-node cn-5"/>
+                        <circle cx="415" cy="150" r="2" fill="#bf5eff" filter="url(#softGlow)" class="circuit-node cn-6"/>
                     </g>
-                    <!-- Eye bridge -->
-                    <line x1="470" y1="266" x2="530" y2="266" stroke="rgba(0,240,255,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+
+                    <!-- Glowing accent ring around brain area (like the orange ring in ref) -->
+                    <circle cx="390" cy="210" r="35" stroke="#aed534" stroke-width="2.5" fill="none" 
+                            stroke-dasharray="4,8" filter="url(#softGlow)" class="accent-ring"/>
+                    <!-- Small glowing accent dots around head (like orange dots in ref) -->
+                    <circle cx="345" cy="230" r="4" fill="#aed534" filter="url(#heavyGlow)" class="accent-dot ad-1"/>
+                    <circle cx="355" cy="245" r="3" fill="#aed534" filter="url(#softGlow)" class="accent-dot ad-2"/>
+                    <circle cx="370" cy="252" r="2.5" fill="#00f0ff" filter="url(#softGlow)" class="accent-dot ad-3"/>
+
+                    <!-- Face plate (lower face, slight 3/4 angle) -->
+                    <path d="M 335,260 Q 340,230 390,220 Q 440,230 445,260 L 435,310 Q 420,335 390,340 Q 360,335 348,310 Z" 
+                          fill="url(#bodyGrad)" stroke="rgba(200,220,240,0.2)" stroke-width="1.2"/>
                     
-                    <!-- Chin / Jaw -->
-                    <path d="M 440,360 L 460,400 L 500,415 L 540,400 L 560,360" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
-                    
-                    <!-- Mouth waveform -->
-                    <g class="speech-wave" stroke="#aed534" stroke-width="1.5" stroke-linecap="round">
-                        <line x1="460" y1="385" x2="460" y2="395"/>
-                        <line x1="472" y1="380" x2="472" y2="400"/>
-                        <line x1="484" y1="375" x2="484" y2="405"/>
-                        <line x1="496" y1="372" x2="496" y2="408"/>
-                        <line x1="508" y1="375" x2="508" y2="405"/>
-                        <line x1="520" y1="380" x2="520" y2="400"/>
-                        <line x1="532" y1="385" x2="532" y2="395"/>
+                    <!-- Eye visor slit -->
+                    <path d="M 352,268 L 428,268 L 425,280 L 355,280 Z" fill="rgba(0,240,255,0.08)" stroke="#00f0ff" stroke-width="1" class="eye-visor"/>
+                    <!-- Eye glow -->
+                    <g filter="url(#softGlow)">
+                        <ellipse cx="380" cy="274" rx="12" ry="5" fill="rgba(0,240,255,0.25)" stroke="#00f0ff" stroke-width="1.2" class="robot-eye-left"/>
+                        <ellipse cx="410" cy="274" rx="10" ry="4.5" fill="rgba(0,240,255,0.2)" stroke="#00f0ff" stroke-width="1" class="robot-eye-right"/>
                     </g>
+                    
+                    <!-- Mouth/chin line -->
+                    <line x1="370" y1="310" x2="408" y2="310" stroke="rgba(0,240,255,0.15)" stroke-width="0.8"/>
+                    <line x1="375" y1="318" x2="405" y2="318" stroke="rgba(0,240,255,0.1)" stroke-width="0.6"/>
                 </g>
 
                 <!-- === NECK === -->
-                <rect x="470" y="415" width="60" height="40" rx="8" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
-                <line x1="480" y1="425" x2="520" y2="425" stroke="rgba(174,213,52,0.2)" stroke-width="0.8"/>
-                <line x1="480" y1="435" x2="520" y2="435" stroke="rgba(174,213,52,0.2)" stroke-width="0.8"/>
-                <line x1="480" y1="445" x2="520" y2="445" stroke="rgba(174,213,52,0.2)" stroke-width="0.8"/>
+                <g class="robot-neck">
+                    <path d="M 370,340 L 365,380 L 415,380 L 410,340" fill="url(#bodyGrad)" stroke="rgba(200,220,240,0.15)" stroke-width="1"/>
+                    <!-- Neck rings -->
+                    <ellipse cx="390" cy="355" rx="22" ry="5" stroke="rgba(0,240,255,0.12)" stroke-width="0.6" fill="none"/>
+                    <ellipse cx="390" cy="365" rx="24" ry="5" stroke="rgba(0,240,255,0.1)" stroke-width="0.6" fill="none"/>
+                </g>
 
-                <!-- === TORSO / CHEST === -->
-                <g class="robot-torso-group">
-                    <!-- Chest plate -->
-                    <path d="M 370,460 L 420,455 L 500,450 L 580,455 L 630,460 L 650,560 L 630,700 L 600,720 L 500,740 L 400,720 L 370,700 L 350,560 Z" 
-                          stroke="url(#robotGlow)" stroke-width="1.8" fill="none" class="chest-plate"/>
+                <!-- === TORSO (Smooth elegant contour) === -->
+                <g class="robot-torso">
+                    <!-- Main chest/torso shape -->
+                    <path d="M 310,385 Q 300,390 285,430 L 270,530 L 280,620 Q 300,660 390,670 Q 480,660 500,620 L 510,530 L 495,430 Q 480,390 470,385 Z" 
+                          fill="url(#bodyGrad)" stroke="rgba(200,220,240,0.2)" stroke-width="1.5" class="torso-shell"/>
                     
-                    <!-- Chest panel lines -->
-                    <path d="M 400,480 L 500,470 L 600,480" stroke="rgba(0,240,255,0.15)" stroke-width="0.8" fill="none"/>
-                    <path d="M 390,520 L 500,510 L 610,520" stroke="rgba(0,240,255,0.1)" stroke-width="0.8" fill="none"/>
+                    <!-- Chest panel separation lines -->
+                    <path d="M 340,400 Q 390,395 440,400" stroke="rgba(0,240,255,0.1)" stroke-width="0.6" fill="none"/>
+                    <path d="M 330,430 Q 390,425 450,430" stroke="rgba(0,240,255,0.08)" stroke-width="0.6" fill="none"/>
                     
-                    <!-- REACTOR CORE (Central Chest) -->
+                    <!-- Chest reactor core -->
                     <g class="reactor-core" filter="url(#heavyGlow)">
-                        <circle cx="500" cy="570" r="45" fill="url(#reactorCore)" class="core-glow"/>
-                        <circle cx="500" cy="570" r="35" stroke="#00f0ff" stroke-width="1.5" fill="none" class="core-ring-outer"/>
-                        <circle cx="500" cy="570" r="22" stroke="#aed534" stroke-width="1" fill="none" stroke-dasharray="6,4" class="core-ring-inner"/>
-                        <circle cx="500" cy="570" r="10" fill="rgba(0,240,255,0.4)" class="core-center"/>
-                        <!-- Core energy lines -->
-                        <line x1="500" y1="525" x2="500" y2="540" stroke="#00f0ff" stroke-width="1" class="core-beam"/>
-                        <line x1="500" y1="600" x2="500" y2="615" stroke="#00f0ff" stroke-width="1" class="core-beam"/>
-                        <line x1="455" y1="570" x2="470" y2="570" stroke="#00f0ff" stroke-width="1" class="core-beam"/>
-                        <line x1="530" y1="570" x2="545" y2="570" stroke="#00f0ff" stroke-width="1" class="core-beam"/>
+                        <circle cx="390" cy="480" r="30" fill="url(#chestCore)" class="core-glow"/>
+                        <circle cx="390" cy="480" r="22" stroke="#00f0ff" stroke-width="1.2" fill="none" class="core-ring-outer"/>
+                        <circle cx="390" cy="480" r="13" stroke="#aed534" stroke-width="0.8" fill="none" stroke-dasharray="4,3" class="core-ring-inner"/>
+                        <circle cx="390" cy="480" r="5" fill="rgba(0,240,255,0.5)" class="core-center"/>
                     </g>
                     
-                    <!-- Chest side vents -->
-                    <g stroke="rgba(174,213,52,0.2)" stroke-width="0.8">
-                        <line x1="375" y1="520" x2="395" y2="520"/>
-                        <line x1="378" y1="535" x2="398" y2="535"/>
-                        <line x1="381" y1="550" x2="401" y2="550"/>
-                        <line x1="605" y1="520" x2="625" y2="520"/>
-                        <line x1="602" y1="535" x2="622" y2="535"/>
-                        <line x1="599" y1="550" x2="619" y2="550"/>
+                    <!-- Side panel vents -->
+                    <g stroke="rgba(174,213,52,0.12)" stroke-width="0.6">
+                        <line x1="290" y1="460" x2="310" y2="458"/>
+                        <line x1="292" y1="475" x2="312" y2="473"/>
+                        <line x1="294" y1="490" x2="314" y2="488"/>
+                        <line x1="470" y1="460" x2="490" y2="458"/>
+                        <line x1="468" y1="475" x2="488" y2="473"/>
+                        <line x1="466" y1="490" x2="486" y2="488"/>
                     </g>
+                    
+                    <!-- Torso center line -->
+                    <line x1="390" y1="400" x2="390" y2="650" stroke="rgba(0,240,255,0.06)" stroke-width="0.5" stroke-dasharray="4,6"/>
                 </g>
 
-                <!-- === CIRCUIT SPINE (Behind torso) === -->
-                <g class="circuit-spine" stroke="rgba(191,94,255,0.15)" stroke-width="1">
-                    <line x1="500" y1="455" x2="500" y2="740" stroke-dasharray="5,8"/>
-                    <circle cx="500" cy="490" r="3" fill="#bf5eff" opacity="0.4" class="spine-node spine-node-1"/>
-                    <circle cx="500" cy="550" r="3" fill="#bf5eff" opacity="0.4" class="spine-node spine-node-2"/>
-                    <circle cx="500" cy="630" r="3" fill="#bf5eff" opacity="0.4" class="spine-node spine-node-3"/>
-                    <circle cx="500" cy="700" r="3" fill="#bf5eff" opacity="0.4" class="spine-node spine-node-4"/>
-                </g>
-
-                <!-- === LEFT ARM === -->
+                <!-- === LEFT ARM (Resting at side) === -->
                 <g class="robot-arm-left">
-                    <!-- Shoulder joint -->
-                    <circle cx="350" cy="470" r="18" stroke="rgba(0,240,255,0.2)" stroke-width="1.2" fill="none"/>
-                    <circle cx="350" cy="470" r="6" fill="rgba(0,240,255,0.15)"/>
+                    <!-- Shoulder sphere -->
+                    <circle cx="280" cy="400" r="22" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.2)" stroke-width="1"/>
+                    <circle cx="280" cy="400" r="8" stroke="rgba(0,240,255,0.15)" stroke-width="0.6" fill="none"/>
                     <!-- Upper arm -->
-                    <path d="M 340,488 L 300,590 L 320,600 L 355,495" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    <path d="M 268,420 Q 255,480 250,530 L 272,535 Q 278,480 288,422" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.15)" stroke-width="1"/>
                     <!-- Elbow joint -->
-                    <circle cx="310" cy="595" r="12" stroke="rgba(174,213,52,0.2)" stroke-width="1" fill="none"/>
+                    <circle cx="260" cy="535" r="14" fill="url(#limbGrad)" stroke="rgba(174,213,52,0.15)" stroke-width="0.8"/>
                     <!-- Forearm -->
-                    <path d="M 300,607 L 260,720 L 280,730 L 318,610" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
-                    <!-- Hand / Fingers -->
-                    <g class="robot-hand-left">
-                        <path d="M 260,730 L 240,770 L 250,775" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
-                        <path d="M 265,732 L 250,780 L 260,783" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
-                        <path d="M 272,733 L 265,785 L 275,786" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
-                        <path d="M 258,728 L 235,755 L 240,760" stroke="rgba(174,213,52,0.15)" stroke-width="1" fill="none"/>
-                    </g>
-                    <!-- Arm circuit lines -->
-                    <line x1="330" y1="530" x2="345" y2="530" stroke="rgba(174,213,52,0.15)" stroke-width="0.6"/>
-                    <line x1="320" y1="560" x2="340" y2="555" stroke="rgba(174,213,52,0.15)" stroke-width="0.6"/>
+                    <path d="M 250,548 Q 242,600 238,660 L 258,665 Q 264,605 270,550" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.12)" stroke-width="1"/>
+                    <!-- Left hand (relaxed) -->
+                    <path d="M 238,665 Q 230,690 235,710 Q 240,720 250,718 Q 260,710 258,690 L 258,665" 
+                          fill="url(#limbGrad)" stroke="rgba(200,220,240,0.12)" stroke-width="0.8"/>
                 </g>
 
-                <!-- === RIGHT ARM === -->
+                <!-- === RIGHT ARM (Raised & Extended — Sparkle Hand) === -->
                 <g class="robot-arm-right">
-                    <circle cx="650" cy="470" r="18" stroke="rgba(0,240,255,0.2)" stroke-width="1.2" fill="none"/>
-                    <circle cx="650" cy="470" r="6" fill="rgba(0,240,255,0.15)"/>
-                    <path d="M 660,488 L 700,590 L 680,600 L 645,495" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
-                    <circle cx="690" cy="595" r="12" stroke="rgba(174,213,52,0.2)" stroke-width="1" fill="none"/>
-                    <path d="M 700,607 L 740,720 L 720,730 L 682,610" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
-                    <g class="robot-hand-right">
-                        <path d="M 740,730 L 760,770 L 750,775" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
-                        <path d="M 735,732 L 750,780 L 740,783" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
-                        <path d="M 728,733 L 735,785 L 725,786" stroke="rgba(0,240,255,0.2)" stroke-width="1" fill="none"/>
-                        <path d="M 742,728 L 765,755 L 760,760" stroke="rgba(174,213,52,0.15)" stroke-width="1" fill="none"/>
+                    <!-- Shoulder sphere -->
+                    <circle cx="498" cy="400" r="22" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.2)" stroke-width="1"/>
+                    <circle cx="498" cy="400" r="8" stroke="rgba(0,240,255,0.15)" stroke-width="0.6" fill="none"/>
+                    <!-- Upper arm (raised upward-right) -->
+                    <path d="M 515,390 Q 555,370 590,340 L 600,358 Q 565,385 530,400" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.15)" stroke-width="1"/>
+                    <!-- Elbow joint -->
+                    <circle cx="595" cy="348" r="13" fill="url(#limbGrad)" stroke="rgba(174,213,52,0.15)" stroke-width="0.8"/>
+                    <!-- Forearm (extending outward) -->
+                    <path d="M 607,342 Q 640,320 670,295 L 680,310 Q 650,330 618,352" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.12)" stroke-width="1"/>
+                    
+                    <!-- RIGHT HAND (Open, fingers splayed — source of sparkles) -->
+                    <g class="sparkle-hand">
+                        <!-- Palm -->
+                        <path d="M 670,295 Q 685,280 695,275 L 705,285 Q 695,292 680,305" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.15)" stroke-width="0.8"/>
+                        <!-- Fingers -->
+                        <line x1="695" y1="275" x2="710" y2="255" stroke="rgba(200,220,240,0.2)" stroke-width="1.2" stroke-linecap="round"/>
+                        <line x1="700" y1="278" x2="720" y2="262" stroke="rgba(200,220,240,0.2)" stroke-width="1.1" stroke-linecap="round"/>
+                        <line x1="703" y1="283" x2="725" y2="272" stroke="rgba(200,220,240,0.18)" stroke-width="1" stroke-linecap="round"/>
+                        <line x1="705" y1="288" x2="726" y2="283" stroke="rgba(200,220,240,0.15)" stroke-width="0.9" stroke-linecap="round"/>
+                        <!-- Fingertip glows -->
+                        <circle cx="710" cy="255" r="2.5" fill="#aed534" filter="url(#softGlow)" class="fingertip ft-1"/>
+                        <circle cx="720" cy="262" r="2" fill="#00f0ff" filter="url(#softGlow)" class="fingertip ft-2"/>
+                        <circle cx="725" cy="272" r="2" fill="#aed534" filter="url(#softGlow)" class="fingertip ft-3"/>
+                        <circle cx="726" cy="283" r="1.8" fill="#00f0ff" filter="url(#softGlow)" class="fingertip ft-4"/>
                     </g>
-                    <line x1="660" y1="530" x2="655" y2="530" stroke="rgba(174,213,52,0.15)" stroke-width="0.6"/>
-                    <line x1="675" y1="560" x2="660" y2="555" stroke="rgba(174,213,52,0.15)" stroke-width="0.6"/>
                 </g>
 
-                <!-- === WAIST / HIP SECTION === -->
-                <path d="M 400,720 L 420,760 L 500,770 L 580,760 L 600,720" stroke="url(#robotGlow)" stroke-width="1.2" fill="none"/>
-                <ellipse cx="500" cy="745" rx="80" ry="12" stroke="rgba(0,240,255,0.1)" stroke-width="0.8" fill="none"/>
+                <!-- === SPARKLE PARTICLES (Emanating from right hand) === -->
+                <g class="sparkle-field">
+                    <!-- Large sparkles -->
+                    <circle cx="730" cy="240" r="3.5" fill="#aed534" filter="url(#sparkleBlur)" class="sparkle sp-1"/>
+                    <circle cx="750" cy="255" r="2.5" fill="#00f0ff" filter="url(#sparkleBlur)" class="sparkle sp-2"/>
+                    <circle cx="745" cy="230" r="2" fill="#bf5eff" filter="url(#sparkleBlur)" class="sparkle sp-3"/>
+                    <circle cx="760" cy="242" r="3" fill="#aed534" filter="url(#sparkleBlur)" class="sparkle sp-4"/>
+                    <circle cx="740" cy="218" r="2.5" fill="#00f0ff" filter="url(#sparkleBlur)" class="sparkle sp-5"/>
+                    <circle cx="770" cy="265" r="2" fill="#aed534" filter="url(#sparkleBlur)" class="sparkle sp-6"/>
+                    <circle cx="755" cy="225" r="1.5" fill="#bf5eff" filter="url(#sparkleBlur)" class="sparkle sp-7"/>
+                    <!-- Medium sparkles (drifting further) -->
+                    <circle cx="780" cy="235" r="2" fill="#aed534" filter="url(#sparkleBlur)" class="sparkle sp-8"/>
+                    <circle cx="790" cy="250" r="1.5" fill="#00f0ff" filter="url(#sparkleBlur)" class="sparkle sp-9"/>
+                    <circle cx="775" cy="215" r="1.8" fill="#aed534" filter="url(#sparkleBlur)" class="sparkle sp-10"/>
+                    <circle cx="798" cy="240" r="1.2" fill="#bf5eff" filter="url(#sparkleBlur)" class="sparkle sp-11"/>
+                    <circle cx="785" cy="220" r="1" fill="#00f0ff" filter="url(#sparkleBlur)" class="sparkle sp-12"/>
+                    <!-- Tiny distant sparkles -->
+                    <circle cx="810" cy="230" r="1" fill="#aed534" filter="url(#sparkleBlur)" class="sparkle sp-13"/>
+                    <circle cx="805" cy="248" r="0.8" fill="#00f0ff" filter="url(#sparkleBlur)" class="sparkle sp-14"/>
+                    <circle cx="820" cy="238" r="0.7" fill="#aed534" filter="url(#sparkleBlur)" class="sparkle sp-15"/>
+                    <circle cx="800" cy="210" r="0.9" fill="#bf5eff" filter="url(#sparkleBlur)" class="sparkle sp-16"/>
+                    <circle cx="815" cy="258" r="0.6" fill="#aed534" filter="url(#sparkleBlur)" class="sparkle sp-17"/>
+                    <circle cx="825" cy="225" r="0.8" fill="#00f0ff" filter="url(#sparkleBlur)" class="sparkle sp-18"/>
+                    
+                    <!-- Sparkle connecting wisps / trails -->
+                    <path d="M 712,256 Q 730,240 748,228" stroke="rgba(174,213,52,0.08)" stroke-width="0.5" fill="none" class="sparkle-trail st-1"/>
+                    <path d="M 722,264 Q 750,250 775,235" stroke="rgba(0,240,255,0.06)" stroke-width="0.4" fill="none" class="sparkle-trail st-2"/>
+                    <path d="M 726,275 Q 755,258 785,248" stroke="rgba(174,213,52,0.05)" stroke-width="0.4" fill="none" class="sparkle-trail st-3"/>
+                </g>
+
+                <!-- === WAIST / HIP === -->
+                <path d="M 330,660 Q 360,680 390,685 Q 420,680 450,660" stroke="rgba(200,220,240,0.12)" stroke-width="1" fill="none"/>
+                <ellipse cx="390" cy="672" rx="55" ry="10" stroke="rgba(0,240,255,0.08)" stroke-width="0.6" fill="none"/>
 
                 <!-- === LEFT LEG === -->
                 <g class="robot-leg-left">
-                    <path d="M 440,770 L 420,900 L 410,920 L 430,925 L 445,905 L 460,775" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
-                    <circle cx="430" cy="910" r="10" stroke="rgba(0,240,255,0.15)" stroke-width="0.8" fill="none"/>
-                    <path d="M 415,925 L 400,1060 L 390,1080 L 380,1100 L 440,1100 L 435,1080 L 430,1065 L 445,930" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
+                    <path d="M 345,680 Q 335,750 330,830 L 350,835 Q 355,755 362,685" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.12)" stroke-width="1"/>
+                    <circle cx="340" cy="835" r="10" fill="url(#limbGrad)" stroke="rgba(0,240,255,0.1)" stroke-width="0.6"/>
+                    <path d="M 330,845 Q 322,920 318,990 L 340,995 Q 344,925 348,848" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.1)" stroke-width="1"/>
                     <!-- Foot -->
-                    <path d="M 370,1100 L 360,1110 L 355,1125 L 450,1125 L 445,1110 L 440,1100" stroke="rgba(0,240,255,0.15)" stroke-width="1" fill="none"/>
+                    <path d="M 310,990 L 300,1005 L 295,1020 L 350,1020 L 348,1005 L 345,993" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.1)" stroke-width="0.8"/>
                 </g>
 
                 <!-- === RIGHT LEG === -->
                 <g class="robot-leg-right">
-                    <path d="M 560,770 L 580,900 L 590,920 L 570,925 L 555,905 L 540,775" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
-                    <circle cx="570" cy="910" r="10" stroke="rgba(0,240,255,0.15)" stroke-width="0.8" fill="none"/>
-                    <path d="M 585,925 L 600,1060 L 610,1080 L 620,1100 L 560,1100 L 565,1080 L 570,1065 L 555,930" stroke="url(#robotGlow)" stroke-width="1.5" fill="none"/>
-                    <path d="M 630,1100 L 640,1110 L 645,1125 L 550,1125 L 555,1110 L 560,1100" stroke="rgba(0,240,255,0.15)" stroke-width="1" fill="none"/>
+                    <path d="M 420,680 Q 430,750 435,830 L 455,835 Q 450,755 442,685" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.12)" stroke-width="1"/>
+                    <circle cx="445" cy="835" r="10" fill="url(#limbGrad)" stroke="rgba(0,240,255,0.1)" stroke-width="0.6"/>
+                    <path d="M 435,845 Q 440,920 445,990 L 465,995 Q 462,925 455,848" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.1)" stroke-width="1"/>
+                    <path d="M 438,990 L 430,1005 L 425,1020 L 475,1020 L 472,1005 L 468,993" fill="url(#limbGrad)" stroke="rgba(200,220,240,0.1)" stroke-width="0.8"/>
                 </g>
 
-                <!-- === ENERGY PARTICLES FIELD === -->
-                <g class="energy-particles">
-                    <circle cx="200" cy="300" r="2" fill="#00f0ff" class="energy-p p-1"/>
-                    <circle cx="800" cy="350" r="1.5" fill="#aed534" class="energy-p p-2"/>
-                    <circle cx="150" cy="600" r="2" fill="#bf5eff" class="energy-p p-3"/>
-                    <circle cx="850" cy="650" r="1.5" fill="#00f0ff" class="energy-p p-4"/>
-                    <circle cx="300" cy="200" r="1" fill="#aed534" class="energy-p p-5"/>
-                    <circle cx="700" cy="200" r="1.5" fill="#bf5eff" class="energy-p p-6"/>
-                    <circle cx="180" cy="800" r="2" fill="#00f0ff" class="energy-p p-7"/>
-                    <circle cx="820" cy="850" r="1.5" fill="#aed534" class="energy-p p-8"/>
-                    <circle cx="250" cy="1000" r="1" fill="#bf5eff" class="energy-p p-9"/>
-                    <circle cx="750" cy="1050" r="2" fill="#00f0ff" class="energy-p p-10"/>
-                </g>
-
-                <!-- === SCANNING BEAM (Vertical sweep) === -->
-                <g class="scanning-beam">
-                    <line x1="300" y1="0" x2="700" y2="0" stroke="rgba(174,213,52,0.08)" stroke-width="2" class="scan-line"/>
-                </g>
-
-                <!-- === NEURAL BRAIN NETWORK (Inside head) === -->
-                <g class="neural-circuits" stroke="rgba(191,94,255,0.25)" stroke-width="1">
-                    <path d="M 430,150 C 410,130 440,110 470,130 C 490,145 480,165 460,160" fill="none"/>
-                    <path d="M 530,155 C 540,135 570,120 580,145 C 585,165 560,170 545,160" fill="none"/>
-                    <path d="M 460,160 Q 500,175 545,160" fill="none" stroke-dasharray="3,3"/>
-                    <circle cx="430" cy="150" r="3" fill="#bf5eff" filter="url(#neonGlow)" class="neural-node node-1"/>
-                    <circle cx="470" cy="130" r="2.5" fill="#aed534" filter="url(#neonGlow)" class="neural-node node-2"/>
-                    <circle cx="530" cy="135" r="2.5" fill="#aed534" filter="url(#neonGlow)" class="neural-node node-3"/>
-                    <circle cx="575" cy="148" r="3" fill="#bf5eff" filter="url(#neonGlow)" class="neural-node node-4"/>
-                    <circle cx="500" cy="175" r="3.5" fill="#00f0ff" filter="url(#neonGlow)" class="neural-node node-5"/>
-                </g>
-
-                <!-- === DATA STREAMS (Flowing from hands) === -->
-                <g class="data-stream-left" stroke="rgba(0,240,255,0.1)" stroke-width="0.8">
-                    <path d="M 245,775 C 200,800 160,780 120,820 C 80,860 60,900 40,950" fill="none" stroke-dasharray="4,6" class="stream-path"/>
-                </g>
-                <g class="data-stream-right" stroke="rgba(174,213,52,0.1)" stroke-width="0.8">
-                    <path d="M 755,775 C 800,800 840,780 880,820 C 920,860 940,900 960,950" fill="none" stroke-dasharray="4,6" class="stream-path"/>
+                <!-- === AMBIENT PARTICLES (Scattered around robot) === -->
+                <g class="ambient-particles">
+                    <circle cx="220" cy="300" r="1.5" fill="#00f0ff" class="amb-p ap-1"/>
+                    <circle cx="550" cy="450" r="1" fill="#aed534" class="amb-p ap-2"/>
+                    <circle cx="200" cy="550" r="1.2" fill="#bf5eff" class="amb-p ap-3"/>
+                    <circle cx="530" cy="600" r="1" fill="#00f0ff" class="amb-p ap-4"/>
+                    <circle cx="250" cy="700" r="1.5" fill="#aed534" class="amb-p ap-5"/>
+                    <circle cx="520" cy="700" r="0.8" fill="#bf5eff" class="amb-p ap-6"/>
                 </g>
             </svg>
         </div>
