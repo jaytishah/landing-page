@@ -6041,8 +6041,8 @@ h1, h2, h3, h4, h5, h6 {
 .faq-section {
     position: relative;
     padding: 100px 0;
-    background: linear-gradient(to bottom, rgba(2, 8, 2, 0.88), rgba(174, 213, 52, 0.16)), 
-                url('https://images.unsplash.com/photo-1552581230-c0159146269a?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.88)), 
+                url('faq_bg.png') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     border-top: 1px solid rgba(174, 213, 52, 0.25);
@@ -6060,24 +6060,54 @@ h1, h2, h3, h4, h5, h6 {
 
 .faq-image-column {
     position: relative;
+}
+
+.faq-visual-wrapper {
+    position: relative;
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(174, 213, 52, 0.25);
-    box-shadow: 0 0 35px rgba(174, 213, 52, 0.15);
+    border: 1.5px solid rgba(174, 213, 52, 0.25);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(174, 213, 52, 0.15);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
-.faq-image-column:hover {
+.faq-visual-wrapper:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 45px rgba(174, 213, 52, 0.3);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), 0 0 35px rgba(174, 213, 52, 0.25);
+    border-color: rgba(174, 213, 52, 0.45);
 }
 
-.faq-image-column img {
+.faq-visual-img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 15px;
-    filter: brightness(0.9) contrast(1.05);
+    filter: brightness(0.85) contrast(1.05);
+    transition: transform var(--transition-smooth);
+}
+
+.faq-visual-wrapper:hover .faq-visual-img {
+    transform: scale(1.03);
+}
+
+/* Active Real-time Tech Laser Scanner Overlay for FAQs */
+.faq-scanner-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--lime), transparent);
+    box-shadow: 0 0 15px var(--lime);
+    z-index: 10;
+    animation: scanFaqCard 5s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scanFaqCard {
+    0% { top: 0%; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
 }
 
 .faq-accordion-container {
